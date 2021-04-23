@@ -19,29 +19,27 @@ function modelLoaded(){
 }
 function draw(){
     image(video,0,0,600,500);
+    fill("#FF0000");
+    stroke("#FFFFFF");
+    song1s=song1.isPlaying();
     if(scorel>0.2){
-        song2.stop();
         circle(leftWristX,leftWristY,20);
-        NoY1=Number(leftWristY);
-        rd=floor(NoY1);
-        document.getElementById("pepe").innerHTML="Peter Pan Theme"+"Yes";
-        song1.play();
+        song2.stop();
+        if(song1s==false){
+            document.getElementById("pepe").innerHTML="Peter Pan Theme"+"Yes";
+            document.getElementById("harry").innerHTML="Harry Potter Theme"+"No";
+            song1.play();
+        }
     }
-    if(scorel<0.2){
-        song1.stop();
-        document.getElementById("pepe").innerHTML="Peter Pan Theme"+"No";
-    }
+    song2s=song2.isPlaying();
     if(scorer>0.2){
-        song2.stop();
         circle(leftWristX,leftWristY,20);
-        NoY1=Number(leftWristY);
-        rd=floor(NoY1);
-        document.getElementById("harry").innerHTML="Harry Potter Theme"+"Yes";
-        song2.play();
-    }
-    if(scorer<0.2){
-        song2.stop();
-        document.getElementById("harry").innerHTML="Harry Potter Theme"+"No";
+        song1.stop();
+        if(song1s==false){
+            document.getElementById("harry").innerHTML="Harry Potter Theme"+"Yes";
+            document.getElementById("pepe").innerHTML="Peter Pan Theme"+"No";
+            song2.play();
+        }
     }
 }
 function preload(){
